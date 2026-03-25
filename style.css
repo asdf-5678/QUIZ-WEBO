@@ -112,16 +112,26 @@ transition: background-color var(--transition-speed) ease, color var(--transitio
 }
 
 .search_input {
-color: rgb(255, 0, 238);
-background-color: var(--search-bg);
-flex-grow: 1;
-height: 40px;
-border: 0;
-border-radius: 0 4px 4px 0 ;
-padding-left: 10px; /* Text padding add kiya */
-transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    /* Fixed color ki jagah variable use karein */
+    color: var(--text-color); 
+    
+    background-color: var(--search-bg);
+    flex-grow: 1;
+    height: 40px;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    padding-left: 10px;
+    outline: none; /* Input click karne par blue border hatane ke liye */
+    
+    /* Smooth transition dono color aur background ke liye */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
+/* Optional: Placeholder ka color bhi light/dark ke hisab se adjust karne ke liye */
+.search_input::placeholder {
+    color: var(--text-color);
+    opacity: 0.6; /* Thoda halka dikhne ke liye */
+}
 .action_bar {
 display: flex;
 min-width: 250px; /* Biyaada space toggle button ke liye */
@@ -168,6 +178,8 @@ padding: 10px;
     border: 2px solid var(--card-border);
     border-radius: 8px; /* Optional: smooth corners */
     transition: border-color var(--transition-speed) ease;
+    width: 171px;
+
 }
 
 .study_item {
@@ -232,4 +244,159 @@ hr {
     flex-shrink: 0; /* Images ko squeeze hone se rokega */
 }
 
-/* ... [Remaining CSS] ... */
+/* mobile view*/
+
+/* --- MOBILE VIEW LOGIC (Phone ke liye) --- */
+
+/* Desktop par Menu Button hide rahega */
+.mobile_menu_button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 10px 4%;
+        flex-wrap: wrap; /* Items ko align karne ke liye */
+    }
+
+    /* Logo, Toggle, Action Bar ko ek row mein lane ke liye */
+    .logo_container { order: 1; margin-left: 0; }
+    #mobile-menu-toggle { order: 2; display: flex !important; flex-direction: column; align-items: center; cursor: pointer; }
+    .action_bar { order: 3; min-width: auto; gap: 10px; margin-right: 0; }
+    
+    /* Search Bar ko poori width dekar neeche lane ke liye */
+    .search_bar { order: 4; width: 100%; margin: 10px 0; min-width: 100%; }
+
+    /* Nav Bar ko Dropdown banana */
+    .nav_bar {
+        display: none; /* Default hidden */
+        order: 5;
+        width: 100%;
+        min-width: 100%;
+        flex-direction: column;
+        background: var(--header-bg);
+        position: absolute;
+        top: 100%; /* Header ke bilkul niche */
+        left: 0;
+        z-index: 999;
+        border-bottom: 2px solid var(--header-border);
+        padding: 10px 0;
+    }
+
+    /* Jab Menu click ho to ye class add hogi */
+    .nav_bar.active {
+        display: flex;
+    }
+
+    .nav_bar a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--header-border);
+    }
+}
+
+/* --- DESKTOP SETTINGS (Default) --- */
+.mobile_menu_button {
+    display: none; /* Desktop par hide rahega */
+}
+
+/* --- MOBILE VIEW LOGIC (Phone ke liye Professional Look) --- */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; 
+        position: relative; /* Dropdown positioning ke liye */
+    }
+
+    /* 1. Logo Left mein */
+    .logo_container { 
+        order: 1; 
+        margin-left: 0; 
+    }
+
+    /* 2. Action Bar beech mein (Right side ki taraf pushed) */
+    .action_bar { 
+        order: 2; 
+        display: flex;
+        gap: 12px;
+        min-width: auto;
+        margin-right: 15px;
+        margin-left: auto; 
+    }
+
+    /* 3. Toggle Button Extreme Right mein */
+    #mobile-menu-toggle { 
+        order: 3; 
+        display: flex !important; 
+        flex-direction: column; 
+        align-items: center; 
+        cursor: pointer;
+        color: var(--text-color);
+    }
+
+    #mobile-menu-toggle .material-symbols-outlined {
+        font-size: 28px; 
+    }
+
+    #mobile-menu-toggle .action_name {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    /* 4. Search Bar Full Width Niche Line mein */
+    .search_bar { 
+        order: 4; 
+        width: 100%; 
+        margin: 12px 0 5px 0; 
+        min-width: 100%; 
+    }
+
+    /* 5. Dropdown Menu ka Style */
+    .nav_bar {
+        display: none; /* Hidden by default */
+        order: 5;
+        width: 100%;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        background: var(--header-bg);
+        flex-direction: column;
+        z-index: 999;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1); 
+        border-top: 1px solid var(--header-border);
+        padding: 10px 0;
+    }
+
+    /* JS is class ko click par add karega */
+    .nav_bar.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .nav_bar a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--header-border);
+        font-size: 15px;
+        width: 100%;
+        display: block;
+    }
+}
+
+.nav_bar.active {
+    display: flex;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Smooth Animation */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

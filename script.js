@@ -61,3 +61,23 @@ function nextSlide() {
 
 // Automatic interval set karein variable slideInterval ke basis par
 setInterval(nextSlide, slideInterval); 
+
+//mobile view //
+
+// --- MOBILE MENU TOGGLE ---
+const mobileBtn = document.getElementById('mobile-menu-toggle');
+const navBar = document.getElementById('main-nav');
+
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+        // 'active' class ko toggle karega (On/Off)
+        navBar.classList.toggle('active');
+    });
+}
+
+// Click bahar hone par menu band ho jaye (Optional par achha hai)
+document.addEventListener('click', (e) => {
+    if (!mobileBtn.contains(e.target) && !navBar.contains(e.target)) {
+        navBar.classList.remove('active');
+    }
+});s
