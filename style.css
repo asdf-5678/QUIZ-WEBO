@@ -171,6 +171,7 @@ flex-wrap: wrap;
 justify-content: space-evenly;
 gap: 15px; /* Images ke beech space */
 padding: 10px;
+
 }
 
 /* Category images ke liye borders in dark mode */
@@ -179,7 +180,6 @@ padding: 10px;
     border-radius: 8px; /* Optional: smooth corners */
     transition: border-color var(--transition-speed) ease;
     width: 171px;
-
 }
 
 .study_item {
@@ -329,6 +329,14 @@ hr {
         margin-right: 15px;
         margin-left: auto; 
     }
+    .action_container {
+    text-decoration: none !important; /* Underline hatane ke liye */
+    color: inherit; /* Link ka default blue rang hatakar normal karne ke liye */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
     /* 3. Toggle Button Extreme Right mein */
     #mobile-menu-toggle { 
@@ -341,7 +349,7 @@ hr {
     }
 
     #mobile-menu-toggle .material-symbols-outlined {
-        font-size: 28px; 
+        font-size: 28px;
     }
 
     #mobile-menu-toggle .action_name {
