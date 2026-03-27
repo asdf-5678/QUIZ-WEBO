@@ -175,12 +175,54 @@ padding: 10px;
 }
 
 /* Category images ke liye borders in dark mode */
+
 .category_items a img {
     border: 2px solid var(--card-border);
     border-radius: 8px; /* Optional: smooth corners */
     transition: border-color var(--transition-speed) ease;
     width: 171px;
 }
+
+/* image me text k liye hai */
+
+
+.image-container {
+  position: relative; /* Text ko iske andar rakhne ke liye zaroori */
+  display: inline-block;
+  text-decoration: none; /* Underline hatane ke liye */
+}
+
+.quiz-img {
+  width: 200px;
+  height: auto;
+  display: block;
+  border-radius: 10px; /* Optional: corners round karne ke liye */
+}
+
+.image-text {
+  position: absolute; /* Text ko image ke upar float karwayega */
+  top: 50%;           /* Upar se 50% niche */
+  left: 50%;          /* Left se 50% aage */
+  transform: translate(-50%, -50%); /* Perfect center ke liye */
+  
+  /* Text Style */
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgba(1, 1, 1, 0.418); /* Text ke piche halka black shade */
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 80%;         /* Text ki width */
+  text-align: center;
+}
+
+/* Hover Effect: Mouse le jane par text chamkega */
+.image-container:hover .image-text {
+  background-color: rgba(164, 255, 28, 0);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+
 
 .study_item {
 width: 250px;
@@ -329,14 +371,6 @@ hr {
         margin-right: 15px;
         margin-left: auto; 
     }
-    .action_container {
-    text-decoration: none !important; /* Underline hatane ke liye */
-    color: inherit; /* Link ka default blue rang hatakar normal karne ke liye */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 
     /* 3. Toggle Button Extreme Right mein */
     #mobile-menu-toggle { 
